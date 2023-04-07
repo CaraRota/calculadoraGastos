@@ -7,12 +7,16 @@
 }
 
 .column {
-    flex-basis: 25%;
-    /* Set the width of each column to 25% */
     padding: 10px;
     /* Add some padding for spacing */
     box-sizing: border-box;
     /* Include padding and border in the width */
     border: 1px solid #000;
     /* Add a border for visual separation */
+}
+
+@media screen and (max-width: 550px) {
+    .column {
+        font-size: 10px;
+    }
 }

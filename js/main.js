@@ -9,113 +9,63 @@ const user2 = new usuario("Sebastian", 2);
 
 const login = () => {
     let welcome = parseInt(prompt("Cual es tu contraseña?"))
-    if (welcome == null) {
-        alert("Nos vemos pronto.")
-        return
-    } else if (welcome === user1.pwd || welcome === user2.pwd) {
-        agregarGasto()
+    if (welcome === user1.pwd) {
+        loggedIn(user1.nombre)
+    } else if (welcome === user2.pwd) {
+        loggedIn(user2.nombre)
     } else {
         alert("Contraseña incorrecta.")
         return
     }
 }
 
-const agregarGasto = () => {
+const addForm = (nombre) => {
+    const afterLogin = document.querySelector("#afterLogin")
     const loggedIn = document.createElement("div")
-    loggedIn.innerHTML = ``
+    loggedIn.innerHTML = `            <div class="col-12 text-center">
+    <h3>Bienvenid@ ${nombre}</h3>
+</div>
+<div class="container col-12 mb-4 d-flex justify-content-center">
+    <form>
+        <div id="emailHelp" class="form-text">
+            <h6 class="text-center">Cuanto dinero has gastado?</h6>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">$</span>
+            <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+            <span class="input-group-text">.00</span>
+        </div>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+        </div>
+        <button id="formulario" type="submit" class="btn btn-primary col-12 uppercase">Agregar
+            Gasto</button>
+</div>
+</form>`
+    afterLogin.appendChild(loggedIn);
 }
 
-const btnagregarGasto = document.querySelector("#agregarGasto")
-btnagregarGasto.addEventListener("click", login)
+const addLogout = () => {
+    const afterLogin = document.querySelector("#addAfterLogin")
+    afterLogin.innerHTML = `<div class="col-6 d-flex justify-content-center">
+    <a id="login" class="btn btn-dark uppercase" role="button">Logout</a>
+</div>
+<div class="col-6 d-flex justify-content-center">
+    <a id="eliminarGasto" class="btn btn-outline-dark uppercase" role="button">Borrar</a>
+</div>`
+}
 
+const loggedIn = (nombre) => {
+    addForm(nombre)
+    addLogout()
+    removeAfterLogin.remove("#removeAfterLogin")
+}
 
+const btnloggedIn = document.querySelector("#login")
+btnloggedIn.addEventListener("click", login)
 
+// const agregaGasto = () => {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// class gastos {
-//     constructor(descripcion, monto, total) {
-//         this.descripcion = descripcion
-//         this.monto = monto
-//         this.total = total
-//     }
+//     const btnAgregarGasto = document.querySelector("#formulario")
+//     btnAgregarGasto.addEventListener("click", agregaGasto)
 // }
-
-// const arrayUsuarios = []
-// const arrayGastos = []
-// const arrayNuevoGasto = []
-
-// const agregarGasto = () => {
-//     let validarUsuario = parseInt(prompt("👋 Hola! Escribe tu contraseña."))
-//     if (validarUsuario == null) {
-//         return
-//     }
-//     else {
-//         const login = new usuarios(null, validarUsuario)
-//         login.login()
-
-//         while (login.login()) {
-//             let descripcion = prompt(`🫡 Hola ${login.nombre}, en que has gastado dinero?`)
-//             if (descripcion == "") {
-//                 alert("⛔ Por favor indica una descripcion.")
-//             } else if (descripcion == null) {
-//                 break
-//             }
-//             else {
-//                 let monto = parseInt(prompt(`✅ Perfecto ${login.nombre}. Cuanto dinero has gastado?`))
-//                 if (isNaN(monto) || monto <= 0) {
-//                     alert("⛔ Por favor ingresa un numero mayor a cero.")
-//                 } else if (monto === null) {
-//                     break
-//                 }
-//                 else {
-//                     alert(`✅ Excelente  ${login.nombre}, tu gasto ha sido ingresado al sistema.`)
-//                     total = arrayGastos.reduce((acc, total) => acc + total.monto, monto)
-
-//                     arrayGastos.push(new gastos(descripcion, monto, total))
-//                     arrayNuevoGasto.push(arrayGastos)
-
-//                     const appendMe = document.querySelector("#appendMe")
-//                     const nuevoGasto = document.createElement("div")
-//                     nuevoGasto.innerHTML = `<div class="cell">
-//                 <div class="column">${login.nombre}</div>
-//                 <div class="column">${descripcion}</div>
-//                 <div class="column">${monto}</div>
-//                 <div class="column">${total}</div>
-//                 </div>`
-
-//                     appendMe.appendChild(nuevoGasto)
-//                     arrayNuevoGasto.length = 0
-//                     return
-//                 }
-//             }
-//         }
-//     }
-// }
-
-// const eliminarGasto = () => {
-//     let resultado = parseInt(prompt("🗝️ Ingrese la contraseña maestra"))
-//     if (resultado === 4545) {
-//         appendMe.lastChild.remove();
-//     } else {
-//         return
-//     }
-// }
-
-// const btnAgregarGasto = document.querySelector("#agregarGasto")
-// btnAgregarGasto.addEventListener("click", agregarGasto)
-
-// const btnEliminarGasto = document.querySelector("#eliminarGasto")
-// btnEliminarGasto.addEventListener("click", eliminarGasto)

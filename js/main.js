@@ -26,7 +26,7 @@ const addForm = (nombre) => {
     <h3>Bienvenid@ ${nombre}</h3>
 </div>
 <div class="container col-12 mb-4 d-flex justify-content-center">
-    <form>
+    <form id="formulario">
         <div id="emailHelp" class="form-text">
             <h6 class="text-center">Cuanto dinero has gastado?</h6>
         </div>
@@ -38,34 +38,34 @@ const addForm = (nombre) => {
         <div class="input-group mb-3">
             <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
         </div>
-        <button id="formulario" type="submit" class="btn btn-primary col-12 uppercase">Agregar
+        <button id="submit" type="submit" class="btn btn-primary col-12 uppercase">Agregar
             Gasto</button>
 </div>
 </form>`
     afterLogin.appendChild(loggedIn);
 }
 
-const addLogout = () => {
+const addButtons = () => {
     const afterLogin = document.querySelector("#addAfterLogin")
     afterLogin.innerHTML = `<div class="col-6 d-flex justify-content-center">
     <a id="login" class="btn btn-dark uppercase" role="button">Logout</a>
-</div>
+</div> 
 <div class="col-6 d-flex justify-content-center">
-    <a id="eliminarGasto" class="btn btn-outline-dark uppercase" role="button">Borrar</a>
+    <a id="eliminarGasto" class="btn btn-danger uppercase" role="button">Borrar</a>
 </div>`
 }
 
 const loggedIn = (nombre) => {
     addForm(nombre)
-    addLogout()
+    addButtons()
     removeAfterLogin.remove("#removeAfterLogin")
 }
 
 const btnloggedIn = document.querySelector("#login")
 btnloggedIn.addEventListener("click", login)
 
-// const agregaGasto = () => {
+const agregaGasto = () => {
 
-//     const btnAgregarGasto = document.querySelector("#formulario")
-//     btnAgregarGasto.addEventListener("click", agregaGasto)
-// }
+    const btnAgregarGasto = document.querySelector("#formulario")
+    btnAgregarGasto.addEventListener("click", agregaGasto)
+}

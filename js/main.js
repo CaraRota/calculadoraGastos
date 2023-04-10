@@ -17,7 +17,6 @@ class gasto {
         this.total = total;
     }
 }
-const arrayGastos = []
 
 const login = () => {
     let welcome = parseInt(prompt("Cual es tu contraseña?"))
@@ -45,7 +44,7 @@ const addForm = (nombre) => {
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text">$</span>
-            <input id="inputNumber" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+            <input id="inputNumber" type="number" autofocus class="form-control" aria-label="Amount (to the nearest dollar)">
             <span class="input-group-text">.00</span>
         </div>
         <div class="form-text">
@@ -86,23 +85,31 @@ const loggedIn = (nombre) => {
 const btnloggedIn = document.querySelector("#login")
 btnloggedIn.addEventListener("click", login)
 
+const arrayMontos = []
+
 const agregaGasto = (event) => {
     event.preventDefault()
     const inputNumber = document.querySelector("#inputNumber")
     const inputText = document.querySelector("#inputText")
-    // const subtotal = 
-    const total = inputNumber.value + 10
 
-    const getGasto = new gasto(nombreUsuario, inputText.value, parseInt(inputNumber.value), total)
-    arrayGastos.push(getGasto)
-    alert("Su nuevo gasto ha sido ingresado")
-    const createNewDiv = document.querySelector("#appendMe")
-    const nuevoGasto = document.createElement("div")
-    nuevoGasto.innerHTML = `<div class="cell">
+    const descripcion = inputText.value
+    const monto = parseInt(inputNumber.value)
+    const total = arrayMontos.reduce((acc, current) => acc + current, monto)
+
+    if (isNaN(monto) || descripcion.trim() === "") {
+        alert("⛔ Por favor rellena los campos.")
+    } else {
+        alert("✅ Su nuevo gasto ha sido ingresado")
+        formulario.reset();
+        arrayMontos.push(monto)
+        const createNewDiv = document.querySelector("#appendMe")
+        const nuevoGasto = document.createElement("div")
+        nuevoGasto.innerHTML = `<div class="cell">
     <div class="col-3 column">${nombreUsuario}</div>
-    <div class="col-3 column">${inputText.value}</div>
-    <div class="col-3 column">${parseInt(inputNumber.value)}</div>
+    <div class="col-3 column">${descripcion}</div>
+    <div class="col-3 column">${monto}</div>
     <div class="col-3 column">${total}</div>
 </div>`
-    createNewDiv.appendChild(nuevoGasto)
+        createNewDiv.appendChild(nuevoGasto)
+    }
 }

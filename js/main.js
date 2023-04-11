@@ -111,14 +111,5 @@ const agregaGasto = (event) => {
     <div class="col-3 column">${total}</div>
 </div>`
         createNewDiv.appendChild(nuevoGasto)
-
-        // Add this data to the JSON file acting as Database
-        fetch('./json/data.json', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(nuevoGasto)
-        })
     }
 }

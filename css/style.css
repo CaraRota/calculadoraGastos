@@ -6,13 +6,22 @@
     display: flex;
 }
 
+.column1 {
+    padding: 10px;
+    box-sizing: border-box;
+    border: 0.5px dotted #fff;
+}
+
 .column {
     padding: 10px;
-    /* Add some padding for spacing */
     box-sizing: border-box;
-    /* Include padding and border in the width */
-    border: 1px solid #000;
-    /* Add a border for visual separation */
+    border: 0.5px dotted #fff;
+}
+
+.bg-table {
+    background: #395067;
+    background: -webkit-linear-gradient(to bottom, #4CA1AF, #395067);
+    background: linear-gradient(to bottom, #4CA1AF, #395067);
 }
 
 @media screen and (max-width: 550px) {

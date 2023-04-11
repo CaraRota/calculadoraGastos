@@ -111,5 +111,15 @@ const agregaGasto = (event) => {
     <div class="col-3 column">${total}</div>
 </div>`
         createNewDiv.appendChild(nuevoGasto)
+        // Funcion para limpiar todos los datos cargados en el sistema
+        const eliminarGasto = () => {
+            let resultado = confirm("⚠️ Estas seguro que desas eliminar absolutamente todo?")
+            if (resultado === true) {
+                nuevoGasto.innerHTML = ``
+            }   
+        }
+        const borrarGastos = document.querySelector("#eliminarGasto")
+        borrarGastos.addEventListener("click", eliminarGasto)
     }
 }
+

@@ -1,3 +1,26 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-analytics.js";
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: "AIzaSyAICkjdnB5spTGMj8gCBwqrjDEKZCrIK1E",
+    authDomain: "calcgastos.firebaseapp.com",
+    projectId: "calcgastos",
+    storageBucket: "calcgastos.appspot.com",
+    messagingSenderId: "500627935187",
+    appId: "1:500627935187:web:9f6485a8b0c803fd8ba926",
+    measurementId: "G-L102PKSDVQ"
+}
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
 class usuario {
     constructor(nombre, pwd) {
         this.nombre = nombre;
@@ -9,14 +32,14 @@ const user2 = new usuario("Sebastian", 2);
 
 let nombreUsuario
 
-class gasto {
-    constructor(nombre, descripcion, monto, total) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.monto = monto;
-        this.total = total;
-    }
-}
+// class gasto {
+//     constructor(nombre, descripcion, monto, total) {
+//         this.nombre = nombre;
+//         this.descripcion = descripcion;
+//         this.monto = monto;
+//         this.total = total;
+//     }
+// }
 
 const login = () => {
     let welcome = parseInt(prompt("Cual es tu contraseña?"))
@@ -111,12 +134,21 @@ const agregaGasto = (event) => {
     <div class="col-3 column">${total}</div>
 </div>`
         createNewDiv.appendChild(nuevoGasto)
+
+        databaseRef.child("gasto").set(nuevoGasto)
+            .then(() => {
+                console.log("Added to Firebase database successfully.")
+            })
+            .catch((error) => {
+                console.error("Error adding array to Firebase database:", error)
+            })
+
         // Funcion para limpiar todos los datos cargados en el sistema
         const eliminarGasto = () => {
             let resultado = confirm("⚠️ Estas seguro que desas eliminar absolutamente todo?")
             if (resultado === true) {
                 nuevoGasto.innerHTML = ``
-            }   
+            }
         }
         const borrarGastos = document.querySelector("#eliminarGasto")
         borrarGastos.addEventListener("click", eliminarGasto)

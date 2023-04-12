@@ -1,7 +1,6 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-analytics.js";
-
+import { initializeApp } from "../node_modules/firebase/app"
+import { getAnalytics } from "../node_modules/firebase/analytics"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -134,14 +133,6 @@ const agregaGasto = (event) => {
     <div class="col-3 column">${total}</div>
 </div>`
         createNewDiv.appendChild(nuevoGasto)
-
-        databaseRef.child("gasto").set(nuevoGasto)
-            .then(() => {
-                console.log("Added to Firebase database successfully.")
-            })
-            .catch((error) => {
-                console.error("Error adding array to Firebase database:", error)
-            })
 
         // Funcion para limpiar todos los datos cargados en el sistema
         const eliminarGasto = () => {
